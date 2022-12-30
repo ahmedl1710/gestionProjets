@@ -24,13 +24,19 @@ public class IUserServiceImpl implements IService<User>{
     @Override
     public User Update(int ID, User T) {
         User u=userRepository.findById(ID).orElse(null);
-        u=T;
+        u.setEmail(T.getEmail());
+        u.setPwd(T.getPwd());
+        u.setRole(T.getRole());
+        u.setProjects(T.getProjects());
+        u.setFName((T.getFName()));
+        u.setIName(T.getIName());
+        u.setMesProjets(T.getMesProjets());
         return userRepository.save(u);
     }
 
     @Override
     public String Delete(int ID) {
-        userRepository.findById(ID).orElse(null);
+        userRepository.deleteById(ID);
         return "User deleted";
     }
 

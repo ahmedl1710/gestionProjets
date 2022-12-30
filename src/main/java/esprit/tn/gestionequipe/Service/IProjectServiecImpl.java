@@ -2,6 +2,7 @@ package esprit.tn.gestionequipe.Service;
 
 import esprit.tn.gestionequipe.Entity.Project;
 import esprit.tn.gestionequipe.Repository.ProjectRepository;
+import esprit.tn.gestionequipe.Repository.SprintRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,10 @@ public class IProjectServiecImpl implements IService<Project>{
     private ProjectRepository projectRepository;
 
 
+
     @Override
     public Project Create(Project T) {
+
         return projectRepository.save(T);
     }
 
@@ -28,7 +31,10 @@ public class IProjectServiecImpl implements IService<Project>{
     @Override
     public Project Update(int ID, Project T) {
         Project proj=projectRepository.findById(ID).orElse(null);
-        proj=T;
+        proj.setTitle(T.getTitle());
+        proj.setDesciption(T.getDesciption());
+        proj.setUsers(T.getUsers());
+        proj.setSprints(T.getSprints());
         return projectRepository.save(proj);
     }
 
