@@ -2,6 +2,7 @@ package esprit.tn.gestionequipe.Controller;
 
 
 import esprit.tn.gestionequipe.Entity.Project;
+import esprit.tn.gestionequipe.Entity.Sprint;
 import esprit.tn.gestionequipe.Service.IProjectServiecImpl;
 import esprit.tn.gestionequipe.Service.ISprintImpl;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static java.lang.System.in;
 
 @RestController
 @RequestMapping("/project")
@@ -19,11 +19,12 @@ public class ProjectController {
     private IProjectServiecImpl projectService;
     private ISprintImpl iSprint;
 
-    @PostMapping("/addProject")
+        @PostMapping("/addProject")
     public Project ajouterProject(@RequestBody Project p)
     {
        //iSprint.Create()
-        
+
+       //p.getSprints().forEach(Sprint-> iSprint.Create(Sprint));//instead od cascadetype.all(fel ajout kahaw)
         return projectService.Create(p);
     }
 

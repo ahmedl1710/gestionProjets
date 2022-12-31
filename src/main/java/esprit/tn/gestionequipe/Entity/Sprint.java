@@ -1,5 +1,6 @@
 package esprit.tn.gestionequipe.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +27,7 @@ public class Sprint implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date startDate;
 
-
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL)
     private Project project;
 }

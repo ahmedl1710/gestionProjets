@@ -1,6 +1,7 @@
 package esprit.tn.gestionequipe.Service;
 
 import esprit.tn.gestionequipe.Entity.Project;
+import esprit.tn.gestionequipe.Entity.Sprint;
 import esprit.tn.gestionequipe.Repository.ProjectRepository;
 import esprit.tn.gestionequipe.Repository.SprintRepository;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,10 @@ public class IProjectServiecImpl implements IService<Project>{
 
     @Override
     public Project Create(Project T) {
-
+        for(Sprint s:T.getSprints())
+        {
+            s.setProject(T);
+        }
         return projectRepository.save(T);
     }
 
